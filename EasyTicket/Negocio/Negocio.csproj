@@ -46,13 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidad\Entidad.csproj">
-      <Project>{7be2b6c4-f291-4726-b5bb-c24cb7511404}</Project>
+      <Project>{a639c15a-d281-47b0-8b47-dec6c3c27934}</Project>
       <Name>Entidad</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repositorio\Repositorio.csproj">
       <Project>{30ce3e44-42de-45d9-969d-c22bcbc5b578}</Project>
       <Name>Repositorio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
