@@ -13,6 +13,14 @@ namespace Repositorio
     {
         public db_Entities() : base(nameOrConnectionString: "MyContext") { }
 
-        public DbSet<Clase1> Clase1 { get; set; }
+        public DbSet<comuna> Comuna { get; set; }
+        public DbSet<empresa> Empresa { get; set; }
+        public DbSet<especialidad> Especialidad { get; set; }
+        public DbSet<hora> Hora { get; set; }
+        public DbSet<local> Local { get; set; }
+        public DbSet<local_serv> Local_serv { get; set; }
+        public DbSet<region> Region { get; set; }
+        public DbSet<servicio> Servicio { get; set; }
+        public DbSet<usuario> Usuario { get; set; }
     }
 }

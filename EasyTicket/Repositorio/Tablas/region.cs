@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    [Table("clase1")]
-    public class Clase1
+    [Table("region")]
+    public class region
     {
-        [Key]
-        [Column("Codigo")]
-        public int Codigo { get; set; }
-        [Column("Numero")]
-        public int Numero { get; set; }
+        [Column("id_region")]
+        public int id_region { get; set; }
+        [Column("nombre_region")]
+        public string nombre_region { get; set; }
 
     }
 }

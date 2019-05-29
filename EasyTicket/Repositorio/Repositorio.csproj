@@ -64,9 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clase1.cs" />
-    <Compile Include="context.cs" />
-    <Compile Include="RepoClass1.cs" />
+    <Compile Include="Tablas\usuario.cs" />
+    <Compile Include="Tablas\servicio.cs" />
+    <Compile Include="Tablas\region.cs" />
+    <Compile Include="Tablas\local_serv.cs" />
+    <Compile Include="Tablas\local.cs" />
+    <Compile Include="Tablas\hora.cs" />
+    <Compile Include="Tablas\especialidad.cs" />
+    <Compile Include="Tablas\empresa.cs" />
+    <Compile Include="Tablas\comuna.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dal\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
