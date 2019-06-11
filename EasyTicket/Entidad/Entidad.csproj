@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComunaEnt.cs" />
+    <Compile Include="EmpresaEnt.cs" />
+    <Compile Include="EspecialidadEnt.cs" />
+    <Compile Include="HoraEnt.cs" />
+    <Compile Include="LocalEnt.cs" />
+    <Compile Include="LocalServEnt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionEnt.cs" />
+    <Compile Include="ServicioEnt.cs" />
+    <Compile Include="UsuarioEnt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

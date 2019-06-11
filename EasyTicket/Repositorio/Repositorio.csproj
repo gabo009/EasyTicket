@@ -64,6 +64,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal\ComunaDal.cs" />
+    <Compile Include="Dal\EmpresaDal.cs" />
+    <Compile Include="Dal\EspecialidadDal.cs" />
+    <Compile Include="Dal\HoraDal.cs" />
+    <Compile Include="Dal\LocalDal.cs" />
+    <Compile Include="Dal\LocalServDal.cs" />
+    <Compile Include="Dal\RegionDal.cs" />
+    <Compile Include="Dal\ServicioDal.cs" />
+    <Compile Include="Dal\UsuarioDal.cs" />
     <Compile Include="Tablas\usuario.cs" />
     <Compile Include="Tablas\servicio.cs" />
     <Compile Include="Tablas\region.cs" />
@@ -77,12 +86,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entidad\Entidad.csproj">
-      <Project>{a639c15a-d281-47b0-8b47-dec6c3c27934}</Project>
-      <Name>Entidad</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -90,7 +93,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dal\" />
+    <ProjectReference Include="..\Entidad\Entidad.csproj">
+      <Project>{a639c15a-d281-47b0-8b47-dec6c3c27934}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -41,7 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crud\ComunaCrud.cs" />
+    <Compile Include="Crud\EmpresaCrud.cs" />
+    <Compile Include="Crud\EspecialidadCrud.cs" />
+    <Compile Include="Crud\HoraCrud.cs" />
+    <Compile Include="Crud\LocalCrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidad\Entidad.csproj">
@@ -52,9 +60,6 @@
       <Project>{30ce3e44-42de-45d9-969d-c22bcbc5b578}</Project>
       <Name>Repositorio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
