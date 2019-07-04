@@ -11,10 +11,13 @@ namespace Repositorio
     [Table("hora")]
     public class hora
     {
+        [Key]
         [Column("id_hora")]
         public int id_hora { get; set; }
-        [Column("fecha_hora")]
-        public DateTime fecha_hora { get; set; }
+        [Column("fecha")]
+        public DateTime fecha { get; set; }
+        [Column("hora_tomada")]
+        public int hora_tomada { get; set; }
         [Column("rut_cliente")]
         public string rut_cliente { get; set; }
         [Column("nom_cliente")]

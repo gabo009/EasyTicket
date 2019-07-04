@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Dal
 {
+    /// <summary>
+    /// Capa de acceso de la base de datos de Usuario (Del)
+    /// </summary>
     public class UsuarioDal
     {
+        /// <summary>
+        /// Método para agregar una Usuario en la BD
+        /// </summary>
+        /// <param name="usuarioEnt">Objeto de la clase usuarioEnt</param>
+        /// <returns>retorna un verdadero o un falso en caso de exception para guardar el obj en la BD</returns>
         public bool AgregarUsuario(Entidad.UsuarioEnt usuarioEnt)
         {
             db_Entities db = new db_Entities();
@@ -30,6 +38,11 @@ namespace Repositorio.Dal
                 return false;
             }
         }
+        /// <summary>
+        /// Método para buscar una usuario en la BD
+        /// </summary>
+        /// <param name="id_usuario">atributo del obj para buscar en la BD</param>
+        /// <returns>retorna el obj, que buscas el la BD según el id_usuario</returns>
         public Entidad.UsuarioEnt BuscarUsuario(int id_usuario)
         {
             db_Entities db = new db_Entities();
@@ -45,6 +58,11 @@ namespace Repositorio.Dal
             };
             return usuarioEnt;
         }
+        /// <summary>
+        /// Método para modificar un objeto de tipo usuario
+        /// </summary>
+        /// <param name="usuarioEnt">obj que trae de la BD</param>
+        /// <returns>retorna un obj de tipo usuario o un nulo en caso de exception</returns>
         public Entidad.UsuarioEnt ModificarUsuario(Entidad.UsuarioEnt usuarioEnt)
         {
             db_Entities db = new db_Entities();
@@ -67,6 +85,10 @@ namespace Repositorio.Dal
                 return null;
             }
         }
+        /// <summary>
+        /// Esto es para listar los usuarios de la BD
+        /// </summary>
+        /// <returns>retorna los usuarios que están en la BD, en caso de que no existan, retorna un nulo</returns>
         public List<Entidad.UsuarioEnt> ListarUsuario()
         {
             db_Entities db = new db_Entities();
@@ -96,6 +118,11 @@ namespace Repositorio.Dal
 
             return ListaUsuario;
         }
+        /// <summary>
+        /// Método para eliminar un usuario
+        /// </summary>
+        /// <param name="id_usuario">por medio del id se buscará y eliminará el usuario</param>
+        /// <returns>si se elimina un usuario enviara un verdadero, si no mandará un falso</returns>
         public bool EliminarUsuario(int id_usuario)
         {
             db_Entities db = new db_Entities();

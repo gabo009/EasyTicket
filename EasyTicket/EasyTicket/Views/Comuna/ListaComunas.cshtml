@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EasyTicket.Models.ComunaModelo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListaComunas</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "IngresarComuna")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_comuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOMBRE_COMUNA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_region)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_comuna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_COMUNA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_region)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarComuna", new { CodigoComuna=item.id_comuna}) |
+                @Html.ActionLink("Eliminar", "EliminarComuna", new { CodigoComuna=item.id_comuna })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

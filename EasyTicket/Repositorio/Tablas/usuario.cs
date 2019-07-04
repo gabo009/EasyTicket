@@ -11,6 +11,7 @@ namespace Repositorio
     [Table("usuario")]
     public class usuario
     {
+        [Key]
         [Column("id_usuario")]
         public int id_usuario { get; set; }
         [Column("nom_usuario")]

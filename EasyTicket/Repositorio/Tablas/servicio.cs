@@ -11,6 +11,7 @@ namespace Repositorio
     [Table("servicio")]
     public class servicio
     {
+        [Key]
         [Column("id_servicio")]
         public int id_servicio { get; set; }
         [Column("nom_servicio")]

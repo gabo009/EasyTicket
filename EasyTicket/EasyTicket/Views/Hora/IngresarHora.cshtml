@@ -1,0 +1,209 @@
+﻿@model EasyTicket.Models.HoraModelo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IngrsarHora</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+<div class="form-horizontal">
+    <h4>HoraModelo</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.id_hora, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.id_hora, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.id_hora, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.fecha, new { @type = "date", @id = "fecha" })
+            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>sel</td>
+                <td>Horas no tomadas</td>
+            </tr>
+        </thead>
+        <tbody id="horasDisp">
+            @for (int num = 9; num <= 18; num++)
+            {
+                if (Model.horasTomadas.Count > 0)
+                {
+                    foreach (var item in Model.horasTomadas)
+                    {
+                        if (item.hora_tomada == num)
+                        {
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td><input type="radio" name="horaDisp" value="@num" /></td>
+                                <td>
+                                    @num:00
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td><input type="radio" name="horaDisp" value="@num" /></td>
+                        <td>
+                            @num:00
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.hora_tomada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hora_tomada, new { htmlAttributes = new { @class = "form-control", @hidden = "", @id = "horaTomada" } })
+            @Html.ValidationMessageFor(model => model.hora_tomada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.rut_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.rut_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.rut_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nom_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nom_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nom_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ape_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ape_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ape_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.correo_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.correo_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.correo_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cel_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cel_cliente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cel_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_local, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.id_local, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.id_local, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.id_servicio, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <script>
+         $(document).ready(function(){
+            $("input[name='horaDisp']").click(function(){
+                var radioValue = $("input[name='horaDisp']:checked").val();
+                if(radioValue){
+                    $("#horaTomada").val(radioValue);
+                }
+            });
+
+
+             $("#fecha").change(function(){
+                var fech = $(this).val();
+                $.getJSON("../Hora/HorasDisponibles", { fecha: fech },
+                    function (data) {
+                        var tabla = $("#horasDisp");
+                        tabla.empty();
+                        var d = '<tr>'
+
+                        for (var num = 9; num <= 18; num++)
+                        {
+                            if (data.length > 0)
+                            {
+                                $.each(data, function (index, itemData) {
+                                    if (itemData.hora_tomada == num) { } else {
+                                        d += '<tr>' +
+                                            '<td><input type="radio" name="horaDisp" value="' + num + '" /></td>' +
+                                            '<td>' + num + ':00' +
+                                            '</td>' +
+                                            '</tr>';
+                                    }
+                                });
+                            }else{
+                                d +='<tr>'+
+                                    '<td><input type="radio" name="horaDisp" value="'+num+'" /></td>'+
+                                    '<td>'+num+':00</td>'+
+                                    '</tr>';
+                            }
+
+                        }
+                        tabla.append(d);
+                    });
+            });
+         });
+    </script>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ namespace Repositorio
     [Table("local")]
     public class local
     {
+        [Key]
         [Column("id_local")]
         public int id_local { get; set; }
         [Column("dir_local")]

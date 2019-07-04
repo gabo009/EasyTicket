@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Dal
 {
+    /// <summary>
+    /// Capa de acceso de la base de datos de Servicio (Del)
+    /// </summary>
     public class ServicioDal
     {
+        /// <summary>
+        /// Método para agregar una Region en la BD
+        /// </summary>
+        /// <param name="servicioEnt">Objeto de la clase servicioEnt</param>
+        /// <returns>retorna un verdadero o un falso en caso de exception para guardar el obj en la BD</returns>
         public bool AgregarServicio(Entidad.ServicioEnt servicioEnt)
         {
             db_Entities db = new db_Entities();
@@ -29,6 +37,11 @@ namespace Repositorio.Dal
                 return false;
             }
         }
+        /// <summary>
+        /// Método para buscar una servicio en la BD
+        /// </summary>
+        /// <param name="id_servicio">atributo del obj para buscar en la BD</param>
+        /// <returns>retorna el obj, que buscas el la BD según el id_servicio</returns>
         public Entidad.ServicioEnt BuscarServicio(int id_servicio)
         {
             db_Entities db = new db_Entities();
@@ -43,6 +56,11 @@ namespace Repositorio.Dal
             };
             return servicioEnt;
         }
+        /// <summary>
+        /// Método para modificar un objeto de tipo region
+        /// </summary>
+        /// <param name="servicioEnt">obj que trae de la BD</param>
+        /// <returns>retorna un obj de tipo servicio o un nulo en caso de exception</returns>
         public Entidad.ServicioEnt ModificarServicio(Entidad.ServicioEnt servicioEnt)
         {
             db_Entities db = new db_Entities();
@@ -64,6 +82,10 @@ namespace Repositorio.Dal
                 return null;
             }
         }
+        /// <summary>
+        /// Esto es para listar los servicio de la BD
+        /// </summary>
+        /// <returns>retorna los servicios que están en la BD, en caso de que no existan, retorna un nulo</returns>
         public List<Entidad.ServicioEnt> ListarServicio()
         {
             db_Entities db = new db_Entities();
@@ -92,6 +114,11 @@ namespace Repositorio.Dal
 
             return ListaServicio;
         }
+        /// <summary>
+        /// Método para eliminar un servicio
+        /// </summary>
+        /// <param name="id_servicio">por medio del id se buscará y eliminará el servicio</param>
+        /// <returns>si se elimina un servicio enviara un verdadero, si no mandará un falso</returns>
         public bool EliminarServicio(int id_servicio)
         {
             db_Entities db = new db_Entities();
@@ -108,6 +135,35 @@ namespace Repositorio.Dal
             {
                 return false;
             }
+        }
+
+        public List<Entidad.ServicioEnt> ListarPorEspecialidad(int Id_Especialidad)
+        {
+            db_Entities db = new db_Entities();
+            List<Entidad.ServicioEnt> listaServicios = new List<Entidad.ServicioEnt>();
+            Entidad.ServicioEnt servicioEnt = new Entidad.ServicioEnt();
+            try
+            {
+                foreach (var ser in db.Servicio.Where(s => s.id_especialidad == Id_Especialidad).ToList())
+                {
+                    servicioEnt = new Entidad.ServicioEnt()
+                    {
+                        id_servicio = ser.id_servicio,
+                        nom_servicio = ser.nom_servicio,
+                        desc_servicio = ser.desc_servicio,
+                        id_especialidad = ser.id_especialidad
+                    };
+
+                    listaServicios.Add(servicioEnt);
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+            return listaServicios;
         }
     }
 }

@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Dal
 {
+    /// <summary>
+    /// Capa de acceso de la base de datos de Empresa (Dal)
+    /// </summary>
     public class EmpresaDal
     {
+        /// <summary>
+        /// Método para agregar una empresa en la BD
+        /// </summary>
+        /// <param name="empresaEnt">Objeto de la clase EmpresaEnt</param>
+        /// <returns>retorna un verdadero o un falso en caso de exception para guardar el obj en la BD</returns>
         public bool AgregarEmpresa(Entidad.EmpresaEnt empresaEnt)
         {
             db_Entities db = new db_Entities();
@@ -28,6 +36,11 @@ namespace Repositorio.Dal
                 return false;
             }
         }
+        /// <summary>
+        /// Método para buscar una empresa en la BD
+        /// </summary>
+        /// <param name="id_empresa">atributo del obj para buscar en la BD</param>
+        /// <returns>retorna el obj, que buscas el la BD según el id_empresa</returns>
         public Entidad.EmpresaEnt BuscarEmpresa(int id_empresa)
         {
             db_Entities db = new db_Entities();
@@ -41,6 +54,11 @@ namespace Repositorio.Dal
             };
             return empresaEnt;
         }
+        /// <summary>
+        /// Método para modificar un objeto de tipo Empresa
+        /// </summary>
+        /// <param name="empresaEnt">obj que trae de la BD</param>
+        /// <returns>retorna un obj de tipo empresa o un nulo en caso de exception</returns>
         public Entidad.EmpresaEnt ModificarEmpresa(Entidad.EmpresaEnt empresaEnt)
         {
             db_Entities db = new db_Entities();
@@ -61,6 +79,10 @@ namespace Repositorio.Dal
                 return null;
             }
         }
+        /// <summary>
+        /// Esto es para listar las empresas de la BD
+        /// </summary>
+        /// <returns>retorna las empresas que están en la BD, en caso de que no existan, retorna un nulo</returns>
         public List<Entidad.EmpresaEnt> ListarEmpresas()
         {
             db_Entities db = new db_Entities();
@@ -88,6 +110,11 @@ namespace Repositorio.Dal
 
             return listaEmpresas;
         }
+        /// <summary>
+        /// Método para eliminar una empresa
+        /// </summary>
+        /// <param name="id_empresa">por medio del id se buscará y eliminará la empresa</param>
+        /// <returns>si se elimina una empresa enviara un verdadero, si no mandará un falso</returns>
         public bool EliminarEmpesa(int id_empresa)
         {
             db_Entities db = new db_Entities();
@@ -107,3 +134,4 @@ namespace Repositorio.Dal
         }
     }
 }
+

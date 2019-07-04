@@ -1,0 +1,222 @@
+﻿@model EasyTicket.Models.FiltroModelo
+
+@{
+    Layout = null;
+
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>BuscarLocal</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <div class="form-horizontal">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h4>HoraModelo</h4>
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.regiones, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" name="regiones" id="regiones">
+                        <option value="0">Seleccione Region</option>
+                        @foreach (var item in Model.regiones)
+                        {
+                            <option value=@item.id_region>@item.nombre_region</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.regiones, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.comunas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" name="comunas" id="comunas">
+                        <option value="0">Seleccione Comuna</option>
+                        @foreach (var item in Model.comunas)
+                        {
+                            <option value=@item.id_comuna>@item.nombre_comuna</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.comunas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.especialidades, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" name="especialidades" id="especialidades">
+                        <option value="0">Seleccione Especialidad</option>
+                        @foreach (var item in Model.especialidades)
+                        {
+                            <option value=@item.id_especialidad>@item.nom_especialidad</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.especialidades, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        }
+        @using (Html.BeginForm("PasarHoraHora", "Hora", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.servicios, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" name="servicios" id="servicios">
+                        <option value="0">Seleccione Servicio</option>
+                        @foreach (var item in Model.servicios)
+                        {
+                            <option value=@item.id_servicio>@item.nom_servicio</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.servicios, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <table>
+                <thead>
+                    <tr>
+                        <td>sel</td>
+                        <td>id_local</td>
+                        <td>dir_local</td>
+                        <td>id_empresa</td>
+                        <td>id_comuna</td>
+                    </tr>
+                </thead>
+                <tbody id="bodyLocales">
+                    @foreach (var item in Model.locales)
+                    {
+                        <tr>
+                            <td><input type="radio" name="localList" value="@item.id_local" /></td>
+                            <td>
+                                @item.id_local
+                            </td>
+                            <td>
+                                @item.dir_local
+                            </td>
+                            <td>
+                                @item.id_empresa
+                            </td>
+                            <td>
+                                @item.id_comuna
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="boton" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+
+    
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", "Home")
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#regiones").change(function () {
+                var rID = $(this).val();
+                $.getJSON("../Hora/CargarComunas", { Id_Region: parseInt(rID) },
+                    function (data) {
+                        var select = $("#comunas");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: 0,
+                            text: "Seleccione Comuna"
+                        }));
+                        $.each(data, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+
+            $("#especialidades").change(function () {
+                var sID = $(this).val();
+                $.getJSON("../Hora/CargarServicios", { Id_Especialidad: parseInt(sID) },
+                    function (data) {
+                        var select = $("#servicios");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: 0,
+                            text: "Seleccione Servicio"
+                        }));
+                        $.each(data, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+
+
+
+            $("#servicios").change(function () {
+                var sID = $(this).val();
+                var cID = $("#comunas").val();
+                $.getJSON("../Hora/CargarLocales", { id_servicio: parseInt(sID), id_comuna: parseInt(cID) },
+                    function (data) {
+                        var tabla = $("#bodyLocales");
+                        tabla.empty();
+                        var d = '<tr>'
+                        $.each(data, function (index, itemData) {
+                            d += '<tr>' +
+                                '<td><input type="radio" name="localList" value="' + itemData.id_local + '"/></td>' +
+                                '<td>' + itemData.id_local + '</td>' +
+                                '<td>' + itemData.dir_local + '</td>' +
+                                '<td>' + itemData.id_empresa + '</td>' +
+                                '<td>' + itemData.id_comuna + '</td>' +
+                                '</tr>';
+                        });
+                        tabla.append(d);
+                    });
+            });
+            $("#comunas").change(function () {
+                var cID = $(this).val();
+                var sID = $("#servicios").val();
+                $.getJSON("../Hora/CargarLocales", { id_servicio: parseInt(sID), id_comuna: parseInt(cID) },
+                    function (data) {
+                        var tabla = $("#bodyLocales");
+                        tabla.empty();
+                        var d = '<tr>'
+                        $.each(data, function (index, itemData) {
+                            d += '<tr>' +
+                                '<td><input type="radio" name="local" value="' + itemData.id_local + '"/></td>' +
+                                '<td>' + itemData.id_local + '</td>' +
+                                '<td>' + itemData.dir_local + '</td>' +
+                                '<td>' + itemData.id_empresa + '</td>' +
+                                '<td>' + itemData.id_comuna + '</td>' +
+                                '</tr>';
+                        });
+                        tabla.append(d);
+                    });
+            });
+        });
+
+
+    </script>
+</body>
+</html>

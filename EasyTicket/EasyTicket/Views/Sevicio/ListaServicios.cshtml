@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EasyTicket.Models.ServicioModelo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListaServicios</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "IngresaServicio")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desc_servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_especialidad)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_servicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_servicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desc_servicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_especialidad)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarServicio", new { CodigoServicio = item.id_servicio }) |
+                    @Html.ActionLink("Eliminar", "EliminarServicio", new { CodigoServicio = item.id_servicio })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

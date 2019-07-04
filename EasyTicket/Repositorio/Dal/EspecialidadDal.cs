@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Dal
 {
+    /// <summary>
+    /// Capa de acceso de la base de datos de Especialidad (Del)
+    /// </summary>
     public class EspecialidadDal
     {
+        /// <summary>
+        /// Método para agregar una Especialidad en la BD
+        /// </summary>
+        /// <param name="especialidadEnt">Objeto de la clase EspecialidadEnt</param>
+        /// <returns>retorna un verdadero o un falso en caso de exception para guardar el obj en la BD</returns>
         public bool AgregarEspecialidad(Entidad.EspecialidadEnt especialidadEnt)
         {
             db_Entities db = new db_Entities();
@@ -27,6 +35,11 @@ namespace Repositorio.Dal
                 return false;
             }
         }
+        /// <summary>
+        /// Método para buscar una Especialidad en la BD
+        /// </summary>
+        /// <param name="id_especialidad">atributo del obj para buscar en la BD</param>
+        /// <returns>retorna el obj, que buscas el la BD según el id_especialidad</returns>
         public Entidad.EspecialidadEnt BuscarEspecialidad(int id_especialidad)
         {
             db_Entities db = new db_Entities();
@@ -39,6 +52,11 @@ namespace Repositorio.Dal
             };
             return especialidadEnt;
         }
+        /// <summary>
+        /// Método para modificar un objeto de tipo Especialidad
+        /// </summary>
+        /// <param name="especialidadEnt">obj que trae de la BD</param>
+        /// <returns>retorna un obj de tipo especialidad o un nulo en caso de exception</returns>
         public Entidad.EspecialidadEnt ModificarEspecialidad(Entidad.EspecialidadEnt especialidadEnt)
         {
             db_Entities db = new db_Entities();
@@ -58,6 +76,10 @@ namespace Repositorio.Dal
                 return null;
             }
         }
+        /// <summary>
+        /// Esto es para listar las especialidad de la BD
+        /// </summary>
+        /// <returns>retorna las especialidad que están en la BD, en caso de que no existan, retorna un nulo</returns>
         public List<Entidad.EspecialidadEnt> ListarEspecialidad()
         {
             db_Entities db = new db_Entities();
@@ -84,6 +106,11 @@ namespace Repositorio.Dal
 
             return listaEspecialidad;
         }
+        /// <summary>
+        /// Método para eliminar una especialidad
+        /// </summary>
+        /// <param name="id_especialidad">por medio del id se buscará y eliminará la especialidad</param>
+        /// <returns>si se elimina una especialidad enviara un verdadero, si no mandará un falso</returns>
         public bool EliminarEspecialidad(int id_especialidad)
         {
             db_Entities db = new db_Entities();

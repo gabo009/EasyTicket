@@ -11,12 +11,13 @@ namespace Repositorio
     [Table("comuna")]
     public class comuna
     {
+        [Key]
         [Column("id_comuna")]
         public int id_comuna { get; set; }
-        [Column("NOMBRE_COMUNA")]
-        public string NOMBRE_COMUNA { get; set; }
+        [Column("nombre_comuna")]
+        public string nombre_comuna { get; set; }
         [Column("id_region")]
-        public string id_region { get; set; }
+        public int id_region { get; set; }
 
     }
 }

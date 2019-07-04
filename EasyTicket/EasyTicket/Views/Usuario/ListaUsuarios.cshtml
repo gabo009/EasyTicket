@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EasyTicket.Models.UsuarioModelo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListaUsuarios</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "IngresaUsuario")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.con_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipo_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_empresa)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.con_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_empresa)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarUsuario", new { CodigoUsuario = item.id_usuario }) |
+                @Html.ActionLink("Eliminar", "EliminarUsuario", new { CodigoUsuario = item.id_usuario })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

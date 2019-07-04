@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Negocio.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crud\LocalServCrud.cs" />
     <Compile Include="Crud\ComunaCrud.cs" />
     <Compile Include="Crud\EmpresaCrud.cs" />
     <Compile Include="Crud\EspecialidadCrud.cs" />
     <Compile Include="Crud\HoraCrud.cs" />
     <Compile Include="Crud\LocalCrud.cs" />
+    <Compile Include="Crud\RegionCrud.cs" />
+    <Compile Include="Crud\ServicioCrud.cs" />
+    <Compile Include="Crud\UsuarioCrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

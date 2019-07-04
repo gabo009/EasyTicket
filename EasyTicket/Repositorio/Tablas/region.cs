@@ -11,6 +11,7 @@ namespace Repositorio
     [Table("region")]
     public class region
     {
+        [Key]
         [Column("id_region")]
         public int id_region { get; set; }
         [Column("nombre_region")]
